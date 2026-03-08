@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Surprise for You!</title>
+    <title>A Surprise for Smitu!</title>
     <style>
         /* General Page Styling */
         body {
@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             text-align: center;
             overflow: hidden;
@@ -138,7 +138,7 @@
     </audio>
 
     <div id="step1" class="container">
-        <p style="color:#a855f7; font-weight:bold; font-size: 14px; margin-bottom: 5px;">Hey Sweta 💜</p>
+        <p style="color:#a855f7; font-weight:bold; font-size: 14px; margin-bottom: 5px;">Hey Smitu 💜</p>
         <h1 style="color:#1f2937;">Someone made this just for <span style="color:#a855f7;">you</span></h1>
         <div class="heart" onclick="nextStep(2)">💜</div>
         <p style="color:#a855f7; font-weight:bold; background: #f3e8ff; display:inline-block; padding: 8px 16px; border-radius: 20px;">Tap the heart</p>
@@ -154,7 +154,7 @@
     <div id="step3" class="container hidden">
         <p style="color:#a855f7; font-weight:bold; font-size: 14px; margin-bottom: 5px;">A Special Message For You 💌</p>
         <div class="message-box">
-            <p style="color:#1f2937; font-size: 16px; font-style: italic; margin: 0;">"My dearest Sweta, you make my heart smile in ways I never knew were possible. Here's to us and all the adventures ahead."</p>
+            <p style="color:#1f2937; font-size: 16px; font-style: italic; margin: 0;">"My dearest Smitu, you make my heart smile in ways I never knew were possible. Here's to us and all the adventures ahead."</p>
         </div>
         <img src="IMG_3604.jpeg" style="width: 100%; max-width: 250px; border-radius: 10px; margin-bottom: 15px;" alt="Us">
         <br>
@@ -186,7 +186,6 @@
                 initPuzzle();
             }
             if(step === 3) {
-                // Play music!
                 const audio = document.getElementById('bg-music');
                 audio.play().catch(error => console.log("Waiting for interaction to play audio."));
             }
@@ -225,10 +224,7 @@
         function initPuzzle() {
             board.innerHTML = '';
             pieces = [0, 1, 2, 3, 4, 5, 6, 7, 8]; 
-            
-            // Shuffle the pieces randomly
             pieces.sort(() => Math.random() - 0.5);
-            
             renderPuzzle();
         }
 
@@ -238,19 +234,16 @@
                 const tile = document.createElement('div');
                 tile.classList.add('tile');
                 
-                // Calculate position on the board based on its current index
                 const x = (currentBoardIndex % 3) * 100;
                 const y = Math.floor(currentBoardIndex / 3) * 100;
                 tile.style.left = x + 'px';
                 tile.style.top = y + 'px';
                 
-                // Cut the correct piece from the background image
                 const bgX = (originalImgIndex % 3) * 100;
                 const bgY = Math.floor(originalImgIndex / 3) * 100;
                 tile.style.backgroundImage = `url('${imageUrl}')`;
                 tile.style.backgroundPosition = `-${bgX}px -${bgY}px`;
                 
-                // Highlight if it's currently selected
                 if(selectedIndex === currentBoardIndex) {
                     tile.classList.add('selected');
                 }
@@ -263,17 +256,14 @@
         }
 
         function handlePieceClick(index) {
-            // If nothing is selected yet, select this piece
             if (selectedIndex === null) {
                 selectedIndex = index;
                 renderPuzzle();
             } 
-            // If clicking the already selected piece, deselect it
             else if (selectedIndex === index) {
                 selectedIndex = null;
                 renderPuzzle();
             }
-            // If another piece is selected, swap them!
             else {
                 [pieces[selectedIndex], pieces[index]] = [pieces[index], pieces[selectedIndex]];
                 selectedIndex = null;
@@ -285,10 +275,11 @@
             const isWin = pieces.every((val, index) => val === index);
             if (isWin) {
                 setTimeout(() => {
-                    nextStep(3); // Go to message screen
+                    nextStep(3);
                 }, 500);
             }
         }
     </script>
 </body>
-</html>
+            </html>
+            
